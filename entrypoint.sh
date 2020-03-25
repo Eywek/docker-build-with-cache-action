@@ -154,7 +154,7 @@ logout_from_registry() {
 
 login_to_registry() {
   echo "Logging into gcr.io with GCLOUD_SERVICE_ACCOUNT_KEY..."
-  echo ${GCLOUD_SERVICE_ACCOUNT_KEY} | base64 --decode --ignore-garbage > /tmp/key.json
+  echo ${INPUT_GCLOUD_SERVICE_ACCOUNT_KEY} | base64 --decode --ignore-garbage > /tmp/key.json
   gcloud auth activate-service-account --quiet --key-file /tmp/key.json
   gcloud auth configure-docker --quiet
 }
