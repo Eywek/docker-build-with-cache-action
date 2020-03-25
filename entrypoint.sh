@@ -152,9 +152,17 @@ logout_from_registry() {
   docker logout "${INPUT_REGISTRY}"
 }
 
+login_to_registry() {
+  echo "Logging into gcr.io with GCLOUD_SERVICE_ACCOUNT_KEY..."
+  echo ${GCLOUD_SERVICE_ACCOUNT_KEY} | base64 --decode --ignore-garbage > /tmp/key.json
+  gcloud auth activate-service-account --quiet --key-file /tmp/key.json
+  gcloud auth configure-docker --quiet
+}
+
 
 # run the action
 check_required_input
+login_to_registry
 pull_cached_stages
 build_image
 tag_image
