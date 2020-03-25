@@ -90,20 +90,6 @@ check_required_input() {
   exit 1
 }
 
-login_to_registry() {
-  echo -e "\n[Action Step] Log in to registry..."
-  if _has_value USERNAME "${INPUT_USERNAME}" && _has_value PASSWORD "${INPUT_PASSWORD}"; then
-    echo "${INPUT_PASSWORD}" | docker login -u "${INPUT_USERNAME}" --password-stdin "${INPUT_REGISTRY}" \
-      && return 0
-    local log="Could not log in (please check credentials)"
-  else
-    local log="No credentials provided"
-  fi
-
-  not_logged_in=true
-  echo "INFO: $log - Won't be able to pull from private repos, nor to push to public/private repos" >&2
-}
-
 pull_cached_stages() {
   if [ "$INPUT_PULL_IMAGE_AND_STAGES" != true ]; then
     return
@@ -169,7 +155,6 @@ logout_from_registry() {
 
 # run the action
 check_required_input
-login_to_registry
 pull_cached_stages
 build_image
 tag_image
