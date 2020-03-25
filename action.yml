@@ -7,11 +7,8 @@ inputs:
   image_name:
     description: Name of the image to build
     required: true
-  username:
-    description: (Optional) Docker's registry user (needed to push image to repository, or to pull from private repository)
-    required: false
-  password:
-    description: (Optional) Docker's registry password (needed to push image to repository, or to pull from private repository)
+  gcloud_service_accouny_key:
+    description: (Optional) Docker's gcr account
     required: false
   registry:
     description: "(Optional) Docker registry (default: Docker Hub's registry)"
