@@ -7,7 +7,7 @@ inputs:
   image_name:
     description: Name of the image to build
     required: true
-  gcloud_service_accouny_key:
+  gcloud_service_account_key:
     description: (Optional) Docker's gcr account
     required: false
   registry:
